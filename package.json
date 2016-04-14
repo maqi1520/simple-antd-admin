@@ -1,5 +1,5 @@
 {
-  "name": "antd-demo",
+  "name": "simple-antd-admin",
   "version": "1.0.0",
   "entry": {
     "index": "./src/entry/index.jsx"
