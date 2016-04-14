@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Dashboard",
+    "url": "/",
+    "icon": "fa fa-dashboard"
+  },
+  {
+    "name": "图表",
+    "key":  "charts",
+    "icon": "fa fa-bar-chart-o",
+    "child": [
+      {
+        "name": "折线图",
+        "url": "/charts/line"
+      },
+      {
+        "name": "柱状图",
+        "url": "/charts/bar"
+      }
+
+    ]
+  },
+  {
+    "name": "表格",
+    "url": "/table",
+    "icon": "fa fa-table"
+  }
+]
