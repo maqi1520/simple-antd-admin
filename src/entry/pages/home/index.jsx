@@ -1,7 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux'
 import AsyncDom from '../../../common/AsyncDom'
-import {Table, Popconfirm, Pagination,Row, Col} from 'antd'
+import {Table, Popconfirm, Pagination,Row, Col, Button, Modal} from 'antd'
 import DataStore from  './stores/dataStore'
 import DataActions from  './actions/dataActions'
 
@@ -23,12 +23,12 @@ var Index = React.createClass({
                 data: [15, 2, 16, 16, 18, 20]
             }
         ]
-        const pieData=[
-            {value:335, name:'直接访问'},
-            {value:310, name:'邮件营销'},
-            {value:234, name:'联盟广告'},
-            {value:135, name:'视频广告'},
-            {value:1548, name:'搜索引擎'}
+        const pieData = [
+            {value: 335, name: '直接访问'},
+            {value: 310, name: '邮件营销'},
+            {value: 234, name: '联盟广告'},
+            {value: 135, name: '视频广告'},
+            {value: 1548, name: '搜索引擎'}
         ];
         return {
             data: {
@@ -37,8 +37,9 @@ var Index = React.createClass({
             },
             pageSize: 2,
             current: 1,
-            lineData:data,
-            pieData:pieData
+            visible: false,
+            lineData: data,
+            pieData: pieData
         };
     },
     componentWillMount: function () {
@@ -71,6 +72,15 @@ var Index = React.createClass({
         }];
         return (
             <div>
+                <Button type="primary" onClick={this.showModal}>显示对话框</Button>
+                <Modal title="第一个 Modal" visible={this.state.visible}
+                       onOk={this.handleOk} onCancel={this.handleCancel}>
+                    <p>对话框的内容</p>
+
+                    <p>对话框的内容</p>
+
+                    <p>对话框的内容</p>
+                </Modal>
                 <Row>
                     <Col span="16" style={{paddingRight:"16px"}}>
                         <Line title="销量统计图"
@@ -88,14 +98,17 @@ var Index = React.createClass({
                 </Row>
                 <Table columns={columns} dataSource={this.state.data.data} pagination={false}/>
                 {this.state.data._count > this.state.pageSize ?
-                    <Pagination
-                        className="ant-table-pagination"
-                        showTotal={this.showTotal}
-                        defaultCurrent={this.state.current}
-                        current={this.state.current}
-                        total={this.state.data._count}
-                        pageSize={this.state.pageSize}
-                        onChange={this.onChange}/> : ''}
+                    <div className="clearfix">
+                        <Pagination
+                            className="ant-table-pagination"
+                            showTotal={this.showTotal}
+                            defaultCurrent={this.state.current}
+                            current={this.state.current}
+                            total={this.state.data._count}
+                            pageSize={this.state.pageSize}
+                            onChange={this.onChange}/>
+                        </div>
+                 : ''}
             </div>
         )
     },
@@ -105,6 +118,23 @@ var Index = React.createClass({
     onChange: function (current) {
         DataActions.getAll({limit: (current - 1) * this.state.pageSize, offset: this.state.pageSize});
         this.setState({'current': current})
+    },
+    showModal() {
+        this.setState({
+            visible: true
+        });
+    },
+    handleOk() {
+        console.log('点击了确定');
+        this.setState({
+            visible: false
+        });
+    },
+    handleCancel(e) {
+        console.log(e);
+        this.setState({
+            visible: false
+        });
     }
 });
 

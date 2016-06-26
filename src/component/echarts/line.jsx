@@ -16,7 +16,7 @@ const Line = React.createClass({
             </div>
         );
     },
-    componentDidMount: function () {
+    setChart(){
         const {xAxisData, data, title} = this.props;
         const legendData=[];
         const seriesData=[];
@@ -92,6 +92,12 @@ const Line = React.createClass({
             color: ["#5d9cec", "#62c87f", "#f15755", "#fc863f", "#7053b6", "#ffce55", "#6ed5e6", "#f57bc1", "#dcb186", "#647c9d", "#cc99ff"],
             series: seriesData
         });
+    },
+    componentDidMount: function () {
+        this.setChart();
+    },
+    componentDidUpdate(){
+        this.setChart();
     },
     componentWillUnmount: function () {
         this.chart.dispose();

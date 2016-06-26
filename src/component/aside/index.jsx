@@ -1,5 +1,4 @@
 import React from 'react';
-import Reflux from 'reflux';
 import { Link } from 'react-router'
 import { Menu, Icon } from 'antd';
 const SubMenu = Menu.SubMenu;
@@ -7,6 +6,7 @@ const MenuItemGroup = Menu.ItemGroup;
 import './less/index.less';
 
 
+import Reflux from 'reflux';
 import IndexStore from  './stores/index'
 import IndexActions from  './actions/index'
 

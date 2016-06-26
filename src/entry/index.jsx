@@ -1,15 +1,34 @@
 import '../common/lib';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import NProgress from 'nprogress';
 import { Router, Route, Link, browserHistory, hashHistory, IndexRedirect, IndexRoute,useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
-import Layout from './pages/layout/index';
-import Home from './pages/home/index';
-import About from './pages/about/index';
-import Tables from './pages/table/index';
+import Layout from './pages/layout/main';
+const Home = (location, cb) => {
+        require.ensure([], require => {
+            NProgress.start();
+        cb(null, require('./pages/home/index'))
+        NProgress.done();
+    },'home')
+}
+const About = (location, cb) => {
+    NProgress.start();
+    require.x([], require => {
+        cb(null, require('./pages/about/index'))
+    },'about')
+    NProgress.done();
+}
+const Users = (location, cb) => {
+    NProgress.start();
+    require.ensure([], require => {
+        cb(null, require('./pages/users/index'))
+    },'users')
+    NProgress.done();
+}
 import ChartLine from './pages/charts/line';
 import ChartBar from './pages/charts/bar';
-import Users from './pages/users/index';
+import Tables from './pages/table/index';
 import Login from './pages/login/index';
 
 import {getCookie} from '../utils';
@@ -35,14 +54,14 @@ ReactDOM.render((
         <Route path="/" onEnter={validate}>
             {/*<IndexRedirect to="home" />*/}
             <Route component={Layout}>
-                <IndexRoute component={Home}/>
-                <Route path="about" component={About}/>
-                <Route path="table" component={Tables}/>
+                <IndexRoute getComponent={Home}/>
+                <Route path="about" getComponent={About}/>
+                <Route path="table" getcomponent={Tables}/>
                 <Route path="charts">
                     <Route path="line" component={ChartLine}/>
                     <Route path="bar" component={ChartBar}/>
                 </Route>
-                <Route path="users" component={Users} />
+                <Route path="users" getComponent={Users} />
             </Route>
             <Route path="login" component={Login}/>
             <Route path="*" component={NotFound} />

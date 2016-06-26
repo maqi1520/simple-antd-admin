@@ -16,7 +16,7 @@ const Pie = React.createClass({
             </div>
         );
     },
-    componentDidMount: function () {
+    setChart(){
         const {data, title} = this.props;
         const legendData = [];
         data.map(function (value) {
@@ -44,34 +44,40 @@ const Pie = React.createClass({
             },
             color: ["#5d9cec", "#62c87f", "#f15755", "#fc863f", "#7053b6", "#ffce55", "#6ed5e6", "#f57bc1", "#dcb186", "#647c9d", "#cc99ff"],
             series : [
-            {
-                name:'访问来源',
-                type:'pie',
-                radius: [50, 100],
-                center : ['60%', '60%'],
-                avoidLabelOverlap: false,
-                label: {
-                    normal: {
-                        show: false,
-                        position: 'center'
-                    },
-                    emphasis: {
-                        show: true,
-                        textStyle: {
-                            fontSize: '20',
-                            fontWeight: 'bold'
+                {
+                    name:'访问来源',
+                    type:'pie',
+                    radius: [50, 100],
+                    center : ['60%', '60%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '20',
+                                fontWeight: 'bold'
+                            }
                         }
-                    }
-                },
-                labelLine: {
-                    normal: {
-                        show: false
-                    }
-                },
-                data:data
-            }
-        ]
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:data
+                }
+            ]
         });
+    },
+    componentDidMount: function () {
+        this.setChart();
+    },
+    componentDidUpdate(){
+      this.setChart();
     },
     componentWillUnmount: function () {
         this.chart.dispose();
