@@ -14,7 +14,7 @@ const Home = (location, cb) => {
 }
 const About = (location, cb) => {
     NProgress.start();
-    require.x([], require => {
+    require.ensure([], require => {
         cb(null, require('./pages/about/index'))
     },'about')
     NProgress.done();
