@@ -17,7 +17,6 @@ var NavItem = React.createClass({
         };
     },
     render: function () {
-        console.log('1',this.state.data);
         return (
             <div>
                 111

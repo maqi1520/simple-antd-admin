@@ -87,7 +87,7 @@ const Layout = React.createClass({
                             <Dropdown overlay={menu}>
                                 <a className="ant-dropdown-link" href="#">
                                     <img className="img-circle admin-img" src="/images/1.jpeg" alt=""/>
-                                    <span className="user-info">admin <i className="fa fa-angle-down fa-fw"></i></span>
+                                    <span className="user-info">admin1<i className="fa fa-angle-down fa-fw"></i></span>
                                 </a>
                             </Dropdown>
                         </div>

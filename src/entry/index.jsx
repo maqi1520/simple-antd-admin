@@ -7,24 +7,18 @@ import { createHashHistory } from 'history'
 import Layout from './pages/layout/main';
 const Home = (location, cb) => {
         require.ensure([], require => {
-            NProgress.start();
         cb(null, require('./pages/home/index'))
-        NProgress.done();
     },'home')
 }
 const About = (location, cb) => {
-    NProgress.start();
     require.ensure([], require => {
         cb(null, require('./pages/about/index'))
     },'about')
-    NProgress.done();
 }
 const Users = (location, cb) => {
-    NProgress.start();
     require.ensure([], require => {
         cb(null, require('./pages/users/index'))
     },'users')
-    NProgress.done();
 }
 import ChartLine from './pages/charts/line';
 import ChartBar from './pages/charts/bar';
